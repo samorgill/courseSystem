@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/orgillV5/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="orgillV5" targetNamespace="http://localhost/orgillV5/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/orgillV5/">
+      <xsd:element name="getAllCourses">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="courses" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllCoursesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="courseID" type="xsd:int"></xsd:element>
+          	<xsd:element name="courseName" type="xsd:string" />
+          	<xsd:element name="fullOrPartTime" type="xsd:string"></xsd:element>
+          	<xsd:element name="courseCredits" type="xsd:int"></xsd:element>
+          	<xsd:element name="courseDuration" type="xsd:int"></xsd:element>
+          	<xsd:element name="tutorID" type="xsd:int"></xsd:element>
+          	<xsd:element name="courseTutor" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCourse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="courseName2" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCourseResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+				
+      			<xsd:element name="courseID" type="xsd:int"></xsd:element>
+      			<xsd:element name="courseName" type="xsd:string"></xsd:element>
+      			<xsd:element name="fullOrPartTime"
+      				type="xsd:string">
+      			</xsd:element>
+      			<xsd:element name="courseCredits" type="xsd:int"></xsd:element>
+      			<xsd:element name="courseDuration" type="xsd:int"></xsd:element>
+      			<xsd:element name="tutorID" type="xsd:int"></xsd:element>
+      			<xsd:element name="courseTutor" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="insertCourse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="courseID" type="xsd:int"></xsd:element>
+      			<xsd:element name="courseName" type="xsd:string"></xsd:element>
+      			<xsd:element name="fullOrPartTime"
+      				type="xsd:string">
+      			</xsd:element>
+      			<xsd:element name="courseCredits" type="xsd:int"></xsd:element>
+      			<xsd:element name="courseDuration" type="xsd:int"></xsd:element>
+      			<xsd:element name="tutorID" type="xsd:int"></xsd:element>
+      			<xsd:element name="courseTutor" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="insertCourseResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="result" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllCoursesRequest">
+    <wsdl:part element="tns:getAllCourses" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAllCoursesResponse">
+    <wsdl:part element="tns:getAllCoursesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getCourseRequest">
+  	<wsdl:part name="parameters" element="tns:getCourse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCourseResponse">
+  	<wsdl:part name="parameters" element="tns:getCourseResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertCourseRequest">
+  	<wsdl:part name="parameters" element="tns:insertCourse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertCourseResponse">
+  	<wsdl:part name="parameters" element="tns:insertCourseResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="orgillV5">
+    <wsdl:operation name="getAllCourses">
+      <wsdl:input message="tns:getAllCoursesRequest"/>
+      <wsdl:output message="tns:getAllCoursesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getCourse">
+    	<wsdl:input message="tns:getCourseRequest"></wsdl:input>
+    	<wsdl:output message="tns:getCourseResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertCourse">
+    	<wsdl:input message="tns:insertCourseRequest"></wsdl:input>
+    	<wsdl:output message="tns:insertCourseResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="orgillV5SOAP" type="tns:orgillV5">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllCourses">
+      <soap:operation soapAction="http://www.example.org/orgillV5/getAllCourses"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="orgillV5">
+    <wsdl:port binding="tns:orgillV5SOAP" name="orgillV5SOAP">
+      <soap:address location="http://localhost/orgillV5/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
